@@ -14,7 +14,6 @@ class OtpFragment : Fragment() {
     private var binding: FragmentOtpBinding? = null
     private var param1: String? = null
     private var param2: String? = null
-    private var FragmentSignup:Fragment?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +54,12 @@ class OtpFragment : Fragment() {
                     otp4.requestFocus()
                 } else {
                     otp2.requestFocus()
+                }
+            }
+
+            otp4.doOnTextChanged { text, start, before, count ->
+                if (text.isNullOrEmpty()) {
+                    otp3.requestFocus()
                 }
             }
 

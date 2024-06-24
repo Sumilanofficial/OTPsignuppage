@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.matrix.loginotppage.databinding.FragmentLoginBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,41 +40,43 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding=FragmentLoginBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        super.onViewCreated(view, savedInstanceState)
         binding?.btnlogin?.setOnClickListener {
-             var email = binding.etemail.text.toString().trim()
-             var password = binding.etpassword.text.toString().trim()
+            var email = binding.etEmail.text.toString().trim()
+            var password = binding.etPassword.text.toString().trim()
 
             if (email.isEmpty()) {
-                binding.etemail.error = "Email is required"
-                binding.etemail.requestFocus()
+                binding.etEmail.error = "Email is required"
+                binding.etEmail.requestFocus()
 
             }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                binding.etemail.error = "Invalid Email Address"
-                binding.etemail.requestFocus()
-                return@setOnClickListener
+             else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.etEmail.error = "Invalid Email Address"
+                binding.etEmail.requestFocus()
             }
 
 
-            if (password.isEmpty()) {
-                binding.etpassword.error = "Password is required"
-                binding.etpassword.requestFocus()
+            else if (password.isEmpty()) {
+                binding.etPassword.error = "Password is required"
+                binding.etPassword.requestFocus()
 
             }
 
-            if (password.length < 6) {
-                binding.etpassword.error = "Password must be at least 6 characters"
-                binding.etpassword.requestFocus()
+            else if (password.length < 6) {
+                binding.etPassword.error = "Password must be at least 6 characters"
+                binding.etPassword.requestFocus()
 
             }
         }
         binding.btnsignup.setOnClickListener {
-            binding.btnsignup.findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
-
+            findNavController().navigate(R.id.signupFragment)
         }
-
-        return binding.root
     }
 
     companion object {

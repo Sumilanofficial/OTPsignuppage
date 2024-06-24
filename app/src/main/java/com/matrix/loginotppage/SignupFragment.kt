@@ -41,35 +41,32 @@ class SignupFragment : Fragment() {
     ): View? {
         binding=FragmentSignupBinding.inflate(layoutInflater)
         binding?.btnotp?.setOnClickListener {
-            binding?.btnotp?.findNavController()?.navigate(R.id.action_signupFragment_to_otpFragment)
             if (binding?.etname?.text.toString().trim().isEmpty()) {
                 binding?.etname?.error = "Name is required"
                 binding?.etname?.requestFocus()
-
+                return@setOnClickListener
             }
-
 
             if (binding?.etemail?.text.toString().trim().isEmpty()) {
                 binding?.etemail?.error = "Email is required"
                 binding?.etemail?.requestFocus()
-
+                return@setOnClickListener
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(binding?.etemail?.text.toString().trim()).matches()) {
                 binding?.etemail?.error = "Invalid Email Address"
                 binding?.etemail?.requestFocus()
+                return@setOnClickListener
 
             }
             val otp = (1000..9999).random().toString()
             sendOTP(binding?.etemail?.text.toString(), otp)
-
-
         }
         return binding?.root
     }
-    val otp = (1000..9999).random().toString()
     private fun sendOTP(email: String, otp: String) {
-
         Toast.makeText(requireContext(), "OTP: $otp sent to $email", Toast.LENGTH_SHORT).show()
+        binding?.btnotp?.findNavController()?.navigate(R.id.action_signupFragment_to_otpFragment
+        )
     }
 
     companion object {
