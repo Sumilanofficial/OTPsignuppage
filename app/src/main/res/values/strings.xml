@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">swiggy login page</string>
+    <string name="email">Email</string>
+    <string name="hintEmail">Enter a valid Email</string>
+    <string name="name">Name</string>
+    <string name="hntname">Enter Your Name</string>
+    <string name="collage">Collage</string>
+    <string name="edtclgname">Enter your Collage Name\n</string>
+    <string name="contact">Contact</string>
+    <string name="hntcnt">Enter Your valid Number</string>
+    <string name="rbtn1">Yes</string>
+    <string name="rbtn2">No</string>
+    <string name="enrolled">Are you enrolled?</string>
+    <string name="confirm">Submit</string>
+    <string name="find">How did you find us?</string>
+    <string name="btncontinue">Continue</string>
+    <string name="move_to_next">"Move to next "</string>
+</resources>
